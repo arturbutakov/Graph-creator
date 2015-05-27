@@ -77,7 +77,13 @@
 				  <input type="submit" value="Загрузить"/></form>
    	  		    </div>
    	  		</form>
-
+   	  		<!-- Форма для выбора канала -->
+   	  		<form enctype="multipart/form-data" method="POST" action="save.php">
+   	  		   	  		    <div class="form-group">
+   	  		   	  		      <input placeholder="Введите номер канала.." type="text" name="number"/>
+   	  						  <input type="submit" value="Сохранить"/></form>
+   	  		   	  		    </div>
+   	  		   	  		</form>
    	  		<!-- График -->
    	  		<div class="container">
    	  			<div class="row">
