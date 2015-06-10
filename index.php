@@ -87,6 +87,7 @@
    	  		   	      	от <input placeholder="Начало" size="4" type="text" name="begin"/>
    	  		   	      	до <input placeholder="Конец" size="4" type="text" name="end"/>
    	  				  <input type="submit" value="Сохранить"/></form>
+   	  				  <a href="output.txt">Показать</a>
    	  		   	      </div>
    	  		   	</form>
    	  		</div>
