@@ -4,7 +4,7 @@
 	  <meta charset="utf-8">
 	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <title>Создание графиков</title>
+	  <title>Bootstrap Template</title>
 	  <!-- Bootstrap -->
 	  <link href="css/bootstrap.css" rel="stylesheet">
 	  <link href="css/style.css" rel="stylesheet">
@@ -69,21 +69,35 @@
    	  				</div>
    	  			 </div>
    	  			</div>
-
+            
+            
+            <!-- Тип кодирования данных, enctype, ДОЛЖЕН БЫТЬ указан ИМЕННО так -->
+                <form enctype="multipart/form-data" action="test.php?type=loadfile" method="POST">
+                    <div class="form-group">
+                    <!-- Название элемента input определяет имя в массиве $_FILES -->
+                    Отправить этот файл: <input name="userfile" type="file" />
+                    <input type="submit" value="Отправить!" />
+                    </div>
+                </form>
 			<!-- Форма для выбора файла -->
-			<form enctype="multipart/form-data" method="POST" action="test.php">
+			<form enctype="multipart/form-data" method="POST" action="test.php?type=load">
    	  		    <div class="form-group">
-   	  		      <input type="text" name="way"/>
+   	  		      <input placeholder="Введите название файла" size="45" type="text" name="way"/>
 				  <input type="submit" value="Загрузить"/></form>
    	  		    </div>
    	  		</form>
-   	  		<!-- Форма для выбора канала -->
-   	  		<form enctype="multipart/form-data" method="POST" action="save.php">
-   	  		   	  		    <div class="form-group">
-   	  		   	  		      <input placeholder="Введите номер канала.." type="text" name="number"/>
-   	  						  <input type="submit" value="Сохранить"/></form>
-   	  		   	  		    </div>
-   	  		   	  		</form>
+
+   	  		<div>
+   	  			<form enctype="multipart/form-data" method="POST" action="test.php?type=save">
+   	  		   	      <div class="form-group">
+   	  		   	      	<input placeholder="Введите номера каналов через запятую" type="text" name="number" size="40"/>
+   	  		   	      	от <input placeholder="Начало" size="4" type="text" name="begin"/>
+   	  		   	      	до <input placeholder="Конец" size="4" type="text" name="end"/>
+   	  				  <input type="submit" value="Сохранить"/></form>
+   	  		   	      </div>
+   	  		   	</form>
+   	  		</div>
+
    	  		<!-- График -->
    	  		<div class="container">
    	  			<div class="row">
