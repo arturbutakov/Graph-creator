@@ -4,7 +4,7 @@
 	  <meta charset="utf-8">
 	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <title>Bootstrap Template</title>
+	  <title>Графики</title>
 	  <!-- Bootstrap -->
 	  <link href="css/bootstrap.css" rel="stylesheet">
 	  <link href="css/style.css" rel="stylesheet">
@@ -70,23 +70,16 @@
    	  			 </div>
    	  			</div>
             
-            
-            <!-- Тип кодирования данных, enctype, ДОЛЖЕН БЫТЬ указан ИМЕННО так -->
+            <!-- Форма для загрузки файла -->
                 <form enctype="multipart/form-data" action="test.php?type=loadfile" method="POST">
                     <div class="form-group">
+                    	<input type="hidden" name="MAX_FILE_SIZE" value="1000000000000000">
                     <!-- Название элемента input определяет имя в массиве $_FILES -->
-                    Отправить этот файл: <input name="userfile" type="file" />
-                    <input type="submit" value="Отправить!" />
+                    Отправить этот файл: <input name="userfile" type="file" /><br />
+                    	<input type="submit" value="Отправить!" />
                     </div>
                 </form>
-			<!-- Форма для выбора файла -->
-			<form enctype="multipart/form-data" method="POST" action="test.php?type=load">
-   	  		    <div class="form-group">
-   	  		      <input placeholder="Введите название файла" size="45" type="text" name="way"/>
-				  <input type="submit" value="Загрузить"/></form>
-   	  		    </div>
-   	  		</form>
-
+			
    	  		<div>
    	  			<form enctype="multipart/form-data" method="POST" action="test.php?type=save">
    	  		   	      <div class="form-group">
