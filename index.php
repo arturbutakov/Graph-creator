@@ -30,7 +30,7 @@
    	  <div class="col-xs-6 col-md-6">
    	  	   	<!-- Адаптивная навигация по сайту -->
    	  	   	
-   	  			<div class="navbar navbar-default">
+   	  			<!-- <div class="navbar navbar-default">
    	  			 <div class="container">
    	  				<div class="navbar-header">
    	  				   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
@@ -68,7 +68,7 @@
    	  				   </ul>
    	  				</div>
    	  			 </div>
-   	  			</div>
+   	  			</div> -->
             
             <!-- Форма для загрузки файла -->
                 <form enctype="multipart/form-data" action="test.php?type=loadfile" method="POST">
@@ -255,5 +255,21 @@
 	  	legend_html += "</tbody></table>";
 	  	legend.innerHTML = legend_html;
 	  </script>
+	  <br/>
+	  <div class="row">
+   	  <div class="col-xs-4 col-md-3"></div>
+   	  <div class="col-xs-6 col-md-6">
+   	  			<form enctype="multipart/form-data" method="POST" action="test.php?type=newchannel">
+   	  		   	      <div class="form-group">
+   	  		   	      	<input placeholder="Введите номера каналов через запятую" type="text" name="number" size="40"/>
+   	  		   	      	<!-- от <input placeholder="Начало" size="4" type="text" name="begin"/>
+   	  		   	      	до <input placeholder="Конец" size="4" type="text" name="end"/> -->
+   	  				  <input type="submit" value="Записать новый канал"/></form>
+   	  				  <a href="output.txt">Показать</a>
+   	  		   	      </div>
+   	  		   	</form>
+   	  </div>
+   	  </div>
+
    </body>
 </html>

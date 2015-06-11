@@ -1,5 +1,5 @@
 <?php
-
+global $HTTP_POST_VARS;
 function load($way) {
 	$fp = file_get_contents("test/".$way);
 	$arr = explode ("\n",$fp);
@@ -14,13 +14,13 @@ function load($way) {
 		
 		$z = 0;
 		
-		$result .= '{label:'.'\''.$channels[$j].'\''.','.'color:'.$color.','.'data:[';
+		@$result .= '{label:'.'\''.$channels[$j].'\''.','.'color:'.$color.','.'data:[';
 		
 		for ($n=12; $n < count($arr); $n++,$z++) { 
 
 			$str = explode(' ', $arr[$n]);
 
-			$result .= '['.$z.','.$str[$j].'],';
+			@$result .= '['.$z.','.$str[$j].'],';
 
 		 	}
 		 $result .= ']},';
@@ -78,16 +78,60 @@ function save() {
 
 	$file = 'output.txt';
 	file_put_contents($file, $output);
-	readfile('output.txt');
+	// readfile('output.txt');
+}
+
+function newchannel() {
+	$way = $_COOKIE["Way"];
+	$fp = file_get_contents("test/".$way);
+	$arr = explode ("\n",$fp);
+
+	$number = $_POST["number"];
+
+	$number = explode(",", $number);
+	for ($n=0; $n < count($number); $n++) {
+		$number[$n] = $number[$n]-1;
+	}
+
+	$channelname = $arr[11];
+	$channelname = substr($arr[11], 0, -1);
+	$channels = explode(";", $channelname);
+
+	for ($n=0; $n < 11; $n++) {
+		$output .= $arr[$n]."\n";
+	}
+
+	for ($n=0; $n < count($number); $n++) {
+		$output .= $channels[$number[$n]].";";
+	}
+	$output .= "NewChannel;";
+	$output .= "\n";
+
+	for ($t=12; $t < count($arr); $t++) {
+		$string = explode(" ", $arr[$t]);
+		for ($n=0; $n < count($number); $n++) {
+			$output .= $string[$number[$n]]." ";
+			$newchan = $newchan + $string[$number[$n]];
+		}
+		$output .= $newchan." ";
+		$newchan = 0;
+		$output .= "\n";
+	}
+	$file = 'output.txt';
+	file_put_contents($file, $output);
+	load('output.txt');
 }
 
 $type = $_GET['type'];
-
-if ($type = 'loadfile') {
+if ($type == 'loadfile') {
 	loadfile();
 }
-if ($type = 'save') {
+if ($type == 'save') {
 	save();
 }
+if ($type == 'newchannel') {
+	newchannel();
+}
+// header('Location:index.php');
 ?>	
 
