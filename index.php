@@ -1,3 +1,12 @@
+<?php
+function input() {
+	$countchannels = $_COOKIE["countchannels"];
+	for ($i=0; $i < $countchannels; $i++) { 
+		print "<input placeholder='введите коэфицент' size='20' type='text' name='koef$i'/> $_COOKIE[$i]<br/>";
+	}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
    <head>
@@ -87,9 +96,14 @@
    	  		   	      	от <input placeholder="Начало" size="4" type="text" name="begin"/>
    	  		   	      	до <input placeholder="Конец" size="4" type="text" name="end"/>
    	  				  <input type="submit" value="Сохранить"/></form>
-   	  				  <a href="output.txt">Показать</a>
+   	  				  <a href="test/output.txt">Показать</a>
    	  		   	      </div>
    	  		   	</form>
+   	  		   		<form enctype="multipart/form-data" method="POST" action="test.php?type=statistics">
+   	  		   	   	      <div class="form-group">
+   	  		   			  <input type="submit" value="Показать статистики"/></form>
+   	  		   	   	      </div>
+   	  		   	   	</form>
    	  		</div>
 
    	  		<!-- График -->
@@ -262,10 +276,10 @@
    	  			<form enctype="multipart/form-data" method="POST" action="test.php?type=newchannel">
    	  		   	      <div class="form-group">
    	  		   	      	<input placeholder="Введите номера каналов через запятую" type="text" name="number" size="40"/>
-   	  		   	      	<!-- от <input placeholder="Начало" size="4" type="text" name="begin"/>
-   	  		   	      	до <input placeholder="Конец" size="4" type="text" name="end"/> -->
+   	  		   	      	<br/>
+   	  		   	      	<? input(); ?>
    	  				  <input type="submit" value="Записать новый канал"/></form>
-   	  				  <a href="output.txt">Показать</a>
+   	  				  <a href="test/output.txt">Показать</a>
    	  		   	      </div>
    	  		   	</form>
    	  </div>
