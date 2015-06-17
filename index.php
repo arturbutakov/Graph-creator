@@ -39,7 +39,7 @@ function input() {
    	  <div class="col-xs-6 col-md-6">
    	  	   	<!-- Адаптивная навигация по сайту -->
    	  	   	
-   	  			<!-- <div class="navbar navbar-default">
+   	  			<div class="navbar navbar-default">
    	  			 <div class="container">
    	  				<div class="navbar-header">
    	  				   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
@@ -77,7 +77,7 @@ function input() {
    	  				   </ul>
    	  				</div>
    	  			 </div>
-   	  			</div> -->
+   	  			</div>
             
             <!-- Форма для загрузки файла -->
                 <form enctype="multipart/form-data" action="test.php?type=loadfile" method="POST">
