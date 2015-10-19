@@ -1,10 +1,21 @@
+<?php
+header("Cache-Control: no-store, no-cache, must-revalidate");
+header("Expires: " . date("r"));
+function input() {
+	$countchannels = $_COOKIE["countchannels"];
+	for ($i=0; $i < $countchannels; $i++) { 
+		@print "<input placeholder='введите коэфицент' size='20' type='text' name='koef$i'/> $_COOKIE[$i]<br/>";
+	}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
    <head>
 	  <meta charset="utf-8">
 	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <title>Bootstrap Template</title>
+	  <title>Графики</title>
 	  <!-- Bootstrap -->
 	  <link href="css/bootstrap.css" rel="stylesheet">
 	  <link href="css/style.css" rel="stylesheet">
@@ -69,15 +80,92 @@
    	  				</div>
    	  			 </div>
    	  			</div>
-
-			<!-- Форма для выбора файла -->
-			<form enctype="multipart/form-data" method="POST" action="test.php">
-   	  		    <div class="form-group">
-   	  		      <input type="text" name="way"/>
-				  <input type="submit" value="Загрузить"/></form>
-   	  		    </div>
-   	  		</form>
-
+            
+            <!-- Форма для загрузки файла -->
+            <b>Нарисовать файл</b>
+                <form enctype="multipart/form-data" action="test.php?type=loadfile" method="POST">
+                    <div class="form-group">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="1000000000000000">
+                    <!-- Название элемента input определяет имя в массиве $_FILES -->
+                    <input name="userfile" type="file" /><br/>
+                    <input type="submit" value="Вывести" />
+                    </div>
+                </form>
+			<hr/>
+   	  		<div>
+   	  			<b>Сохранение файла</b>
+   	  			<form enctype="multipart/form-data" method="POST" action="test.php?type=save">
+   	  		   	      <div class="form-group">
+   	  		   	      	<input placeholder="Введите номера каналов через запятую" type="text" name="number" size="40"/>
+   	  		   	      	от <input placeholder="Начало" size="4" type="text" name="begin"/>
+   	  		   	      	до <input placeholder="Конец" size="4" type="text" name="end"/>
+   	  				  <input type="submit" value="Сохранить"/></form>
+   	  				  <a href="test/output.txt">Показать</a>
+   	  		   	      </div>
+   	  		   	</form>
+   	  		   		
+   	  		</div>
+   	  		<hr/>
+   	  		<b>Генерировать синус</b>
+   	  		   	<form enctype="multipart/form-data" method="POST" action="test.php?type=modelsin">
+   	  		   	      <div class="form-group">
+   	  		   	      	<br/>
+   	  		   	      	амплитуда <input name="a" type="text" size="3">
+   	  		   	      	круговая частота <input name="w" type="text" size="3">
+   	  		   	      	начальная фаза <input name="f" type="text" size="3">
+   	  				  <input type="submit" value="Генерировать"/></form>
+   	  				  <a href="test/model.txt">Показать</a>
+   	  		   	      </div>
+   	  		   	</form>	
+   	  		<hr/>
+   	  		<b>Генерировать косинус</b>
+   	  		   	<form enctype="multipart/form-data" method="POST" action="test.php?type=modelcos">
+   	  		   	      <div class="form-group">
+   	  		   	      	<br/>
+   	  		   	      	амплитуда <input name="a" type="text" size="3">
+   	  		   	      	круговая частота <input name="w" type="text" size="3">
+   	  		   	      	начальная фаза <input name="f" type="text" size="3">
+   	  				  <input type="submit" value="Генерировать"/></form>
+   	  				  <a href="model.txt">Показать</a>
+   	  		   	      </div>
+   	  		   	</form>	
+   	  		<hr/>
+   	  		<b>Генерировать сигнал с экспоненциальной огибающей</b>
+   	  		   	<form enctype="multipart/form-data" method="POST" action="test.php?type=modelcosexp">
+   	  		   	      <div class="form-group">
+   	  		   	      	<br/>
+   	  		   	      	амплитуда <input name="a" type="text" size="3">
+   	  		   	      	ширина огибающей <input name="t" type="text" size="3">
+   	  		   	      	частота несущей <input name="f" type="text" size="3">
+   	  				  <input type="submit" value="Генерировать"/></form>
+   	  				  <a href="model.txt">Показать</a>
+   	  		   	      </div>
+   	  		   	</form>	
+   	  		   	<hr/>
+   	  		   	<b>Генерировать белый шум</b>
+   	  		   	<form enctype="multipart/form-data" method="POST" action="test.php?type=whitenoise">
+   	  		   	      <div class="form-group">
+   	  		   	      	<br/>
+   	  		   	      	min <input name="min" type="text" size="5">
+   	  		   	      	max <input name="max" type="text" size="5">
+   	  				  <input type="submit" value="Генерировать"/>
+   	  				</form>
+   	  				  <a href="sin.txt">Показать</a>
+   	  		   	      </div>
+   	  		   	</form>
+   	  		   	<hr/>
+   	  		   		<b>Генерировать белый шум с дисперсией</b>
+   	  		   	<form enctype="multipart/form-data" method="POST" action="test.php?type=whitenoisedisp">
+   	  		   	      <div class="form-group">
+   	  		   	      	<br/>
+   	  		   	      	среднее <input name="a" type="text" size="5">
+   	  		   	      	дисперсия <input name="d" type="text" size="5">
+   	  				  <input type="submit" value="Генерировать"/>
+   	  				</form>
+   	  				  <a href="sin.txt">Показать</a>
+   	  		   	      </div>
+   	  		   	</form>
+   	  		   	<hr/>
    	  		<!-- График -->
    	  		<div class="container">
    	  			<div class="row">
@@ -241,5 +329,35 @@
 	  	legend_html += "</tbody></table>";
 	  	legend.innerHTML = legend_html;
 	  </script>
+	  <br/>
+	  <div class="row">
+   	  <div class="col-xs-4 col-md-3"></div>
+   	  <div class="col-xs-6 col-md-6">
+   	  	<hr/>
+   	  	<b>Записать суперпозицию</b><br><br>
+   	  			<form enctype="multipart/form-data" method="POST" action="test.php?type=newchannel">
+   	  		   	      <div class="form-group">
+   	  		   	      	<input placeholder="Введите номера каналов через запятую" type="text" name="numberc" size="40"/>
+   	  		   	      	<br/>
+   	  		   	      	<? input(); ?>
+   	  				  <input type="submit" value="Записать"/></form>
+   	  				  <a href="test/output.txt">Показать</a>
+   	  		   	      </div>
+   	  		   	</form>
+   	  		   	<hr/>
+   	  		   		<form enctype="multipart/form-data" method="POST" action="test.php?type=statistics">
+   	  		   	   	      <div class="form-group">
+   	  		   			  <input type="submit" value="Показать статистики данного файла"/></form>
+   	  		   	   	      </div>
+   	  		   	   	</form>
+   	  		   	
+   	  </div>
+   	  </div>
+   	  <br>
+   	  <br>
+   	  <br>
+   	  <br>
+   	  <br>
+
    </body>
 </html>
